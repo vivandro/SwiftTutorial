@@ -117,7 +117,7 @@ class Customer {
     init(name: String) {
         self.name = name
     }
-    deinit { println("\(name) is being deinitialized") }
+    deinit { print("\(name) is being deinitialized") }
 }
 
 class CreditCard {
@@ -127,7 +127,7 @@ class CreditCard {
         self.number = number
         self.customer = customer
     }
-    deinit { println("Card #\(number) is being deinitialized") }
+    deinit { print("Card #\(number) is being deinitialized") }
 }
 
 var jane: Customer? = Customer(name: "Jane Appleseed")
@@ -182,7 +182,7 @@ class DoesSomething {
         return { [weak self] () -> () in
             self?.num++
             if self == nil {
-                println("Sweat not. The cycle is broken and the instance we captured has been destroyed")
+                print("Sweat not. The cycle is broken and the instance we captured has been destroyed")
             }
         }
     }
