@@ -147,7 +147,7 @@ if let j = iImplicitUnwrap {
 }
 
 
-// Notice the difference in string interpolation of Otionals versus implicitly unwrapped Optionals.
+// Notice the difference in string interpolation of Optionals versus implicitly unwrapped Optionals.
 iImplicitUnwrap = 10
 iOpt = 10
 "\(iOpt) versus \(iImplicitUnwrap)"

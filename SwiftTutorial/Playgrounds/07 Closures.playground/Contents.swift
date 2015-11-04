@@ -19,8 +19,8 @@
 /*************************************************************************
  * Closures
  * No special keyword.
- * Similar to blocks in C and lambda's C++
- * Functions are instances of named closures.
+ * Similar to blocks in C and lambda's C++. But much simpler.
+ * Functions are named closures.
  * Closures automatically capture values from the surrounding/enclosing context.
 *************************************************************************/
 
@@ -41,19 +41,21 @@ var greaterThan = { (x: Int, y: Int) -> Bool in
  * Equivalence between functions and closures.
  ****/
 
-var names = ["Chris", "Alex", "Ewa", "Barry", "Daniella"]
+var names = ["Chris", "Alex", "Ewa", "Barry", "Daniella", ]
 
-func backwards(s1: String, s2: String) -> Bool {
+func leftToRightOrderingDescending(s1: String, s2: String) -> Bool {
     return s1 > s2
 }
 
 // Call to sort using a func
-names.sortInPlace(backwards)
+names.sortInPlace(leftToRightOrderingDescending)
 names
-// If we don't want to modify the source array, we can use the sorted function instead.
+// If we don't want to modify the source array, we can use the sort function instead.
+// names.sort(backwards) // returns a sorted copy of the names array
 
 
 // Same result with a closure
+// leftToRightOrderingAscending
 names.sortInPlace({ (s1: String, s2: String) -> Bool in
     return s1 < s2
 })
@@ -91,15 +93,15 @@ names
 names.sortInPlace(<) // The second argument is actually an operator function name
 names
 
+
+/****
+ * map method
+ ****/
 var nums = [1,3,5,7,]
-
-var sum = nums.map() {
+var evenizeUp = nums.map() {
     $0 + $0 % 2
 }
 
-var sum2 = nums.map {
-    $0 + $0 % 2
-}
 
 /****
  * Capturing Values (How do you think this works internally?)
@@ -110,11 +112,10 @@ func makeIncrementor(forIncrement amount: Int) -> (() -> Int) {
     return {
         runningTotal += amount
         return runningTotal // Ques: Why can't I drop this line as well?
-        // The compiler gives error: Int is not identical to UInt8
+        // The compiler gives error: () -> () cannot be converted to () -> Int
         // Is that a compiler bug related to type inference or am I missing something here?
         // Ans: The answer is that assignment expressions result in Void
-        // return type. Swift compiler seems to be inferring the type
-        // incorectly as UInt8.
+        // return type. So, that's the information I was missing here.
     }
 }
 
@@ -128,4 +129,5 @@ incrementBySeven()
 incrementByTen()
 
 /****
- * Memory management with closures....Will g
+* Memory management with closures....Will get to it in ARC playground
+****/

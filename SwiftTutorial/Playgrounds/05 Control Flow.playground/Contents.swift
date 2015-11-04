@@ -20,7 +20,13 @@ for var index = 0; index < 3; ++index {
     print("index is \(index)")
 }
 
-for index in 1...5 { // 1..<5
+// ... closed range
+for index in 1...5 {
+    print("\(index) times 5 is \(index * 5)")
+}
+
+// ..< half open range
+for index in 1..<5 {
     print("\(index) times 5 is \(index * 5)")
 }
 

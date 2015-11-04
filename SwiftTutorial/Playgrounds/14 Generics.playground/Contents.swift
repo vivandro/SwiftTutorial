@@ -148,4 +148,20 @@ func appendableAndComparable<T where T:Appendable, T.V:Comparable>(a: T) -> Bool
 }
 
 // appendableAndComparable(20) // ERROR
-appendableAndComparable(s
+let intst = MyStack<Int>()
+appendableAndComparable(intst)
+
+// You can also specify constraints on the protocol extensions in order to ensure that the
+// default implementations are only available for types that satisfy these constraints.
+extension Appendable where V: Hashable {
+    // This extension also adds a new method to the protocol.
+    func hashValue() -> Int {return 0}
+}
+
+intst.hashValue()
+
+// The constraints ensure that not all types get the default implementations
+class Blahhh {}
+let pointst = MyStack<Blahhh>()
+//pointst.hashValue() // ERROR: Blahhh does not conform to protocol Hashable
+

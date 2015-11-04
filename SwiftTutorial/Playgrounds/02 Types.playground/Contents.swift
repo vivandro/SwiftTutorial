@@ -64,6 +64,9 @@ var f:Float = 1.25e3
 // Booleans
 let niceDayToLearnSwift: Bool = true
 
+// Range
+let range = 0...3
+
 
 // Strings
 var name: String = "Joh"
@@ -77,6 +80,24 @@ name += "ny" // String + String
 name.append(ch) // String + Character
 name  += "\u{301}" // String + Character Literal
 
+// Indexing characters in a string.
+let alphabet = "abc...z"
+
+alphabet[alphabet.startIndex]
+alphabet[alphabet.startIndex.successor()]
+//alphabet[alphabet.endIndex] // runtime ERROR
+alphabet[alphabet.endIndex.predecessor()]
+alphabet[alphabet.startIndex.advancedBy(alphabet.characters.count-1)]
+
+// Inserting and removing
+name.removeAtIndex(name.endIndex.predecessor())
+name.insert("!", atIndex: name.endIndex)
+name.insertContentsOf(" Gaddar".characters, at: name.endIndex.predecessor())
+let charRange = name.startIndex...name.startIndex.advancedBy(3)
+name.removeRange(charRange)
+
+let intRange = 0...3
+//name.removeRange(intRange) // ERROR: Int range is not equivalent to Index range
 
 // String interpolation
 let interpolated = "i contains \(i)\n whereas f contains \(f)"
@@ -95,12 +116,12 @@ name.uppercaseString
 var tup: (Int, Float) = (10, 67.0)
 
 // Extracting value from the tuples
-// 1: Name each value independantly
+// 1: Decompose each value into separate constants or variables
 let (anInt, aFloat) = tup
 anInt
 aFloat
 
-// 2: Name only the interesting values
+// 2: Name only the interesting values durinng decomposition
 let (_, onlyFloat) = tup
 onlyFloat
 
@@ -127,7 +148,7 @@ planet.1
 // 1. You cannot compare two tuples directly
 //planet == namedTup2 // ERROR
 // This must be a side-effect of each tuple being a new type. Since it is
-// a new unnamed type, we(and the comiler) have no opportunity to extend the type
+// a new unnamed type, we(and the compiler) have no opportunity to extend the type
 // to define the '==' operation on this type.
 // For named types, you (or the compiler) can add such operations using extensions.
 // And yes, we do have operator overloading in Swift. Yay! We will definitely get to

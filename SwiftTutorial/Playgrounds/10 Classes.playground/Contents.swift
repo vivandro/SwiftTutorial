@@ -76,12 +76,36 @@ Counter.gimmeAString()
  *   in value, for some appropriate meaning of “equal”, as defined by the type’s
  *   designer.
  ******************************************************************************/
-let counter2 = counter
-counter2 === counter
-counter2 !== counter
+func == (lhs: Counter, rhs: Counter) -> Bool {
+    return lhs.count == rhs.count
+}
 
-// counter2 == counter
-// counter2 != counter
+func != (lhs: Counter, rhs: Counter) -> Bool {
+    return !(lhs == rhs)
+}
+
+let counter2 = Counter()
+let counter3 = Counter()
+let counter4 = counter3
+
+counter3 === counter2
+counter3 == counter2
+
+counter4 === counter3
+counter4 == counter3
+
+
+counter3 !== counter2
+counter3 != counter2
+
+counter4 !== counter3
+counter4 != counter3
+
+let str1 = "str"
+let str2 = str1
+
+//str2 === str1 ERROR: === can only accept reference types.
+
 
 /******************************************************************************
  * Classes - Inheritance

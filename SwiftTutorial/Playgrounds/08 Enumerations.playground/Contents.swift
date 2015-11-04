@@ -18,8 +18,8 @@
 
 
 /******************************************************************************
- * Enumerations: Skipping them for lack of time. Syntax might be weird, but remember just
- * one thing:
+ * Enumerations: 
+ * Syntax might be weird, but remember just one thing:
  *   Enumerations can be implemented as a discriminated union of tuples.
  * That knowledge should let you wrap your head around most things related to
  * Enumerations.

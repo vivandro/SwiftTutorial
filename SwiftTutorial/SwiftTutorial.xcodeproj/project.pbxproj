@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		825E1C0E1BE2EC6F007913C7 /* 13 Protocols.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "13 Protocols.playground"; path = "Playgrounds/13 Protocols.playground"; sourceTree = "<group>"; };
 		CA3C6CE11A50F17200B3F210 /* 00 Hello World.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "00 Hello World.playground"; path = "Playgrounds/00 Hello World.playground"; sourceTree = "<group>"; };
 		CA764A3B1A5A561000ED70A7 /* 01 Variables.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "01 Variables.playground"; path = "Playgrounds/01 Variables.playground"; sourceTree = "<group>"; };
 		CA764A3C1A5A564300ED70A7 /* 02 Types.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "02 Types.playground"; path = "Playgrounds/02 Types.playground"; sourceTree = "<group>"; };
@@ -20,9 +21,9 @@
 		CA764A441A5A576F00ED70A7 /* 10 Classes.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "10 Classes.playground"; path = "Playgrounds/10 Classes.playground"; sourceTree = "<group>"; };
 		CA764A451A5A578800ED70A7 /* 11 ARC.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "11 ARC.playground"; path = "Playgrounds/11 ARC.playground"; sourceTree = "<group>"; };
 		CA764A461A5A57A700ED70A7 /* 12 Extensions.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "12 Extensions.playground"; path = "Playgrounds/12 Extensions.playground"; sourceTree = "<group>"; };
-		CA764A471A5A57DB00ED70A7 /* 13 Generics.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "13 Generics.playground"; path = "Playgrounds/13 Generics.playground"; sourceTree = "<group>"; };
-		CA764A481A5A57F800ED70A7 /* 14 Operator Overloading.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "14 Operator Overloading.playground"; path = "Playgrounds/14 Operator Overloading.playground"; sourceTree = "<group>"; };
-		CA764A491A5A583800ED70A7 /* 15 Miscellaneous.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "15 Miscellaneous.playground"; path = "Playgrounds/15 Miscellaneous.playground"; sourceTree = "<group>"; };
+		CA764A471A5A57DB00ED70A7 /* 14 Generics.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "14 Generics.playground"; path = "Playgrounds/14 Generics.playground"; sourceTree = "<group>"; };
+		CA764A481A5A57F800ED70A7 /* 15 Operator Overloading.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "15 Operator Overloading.playground"; path = "Playgrounds/15 Operator Overloading.playground"; sourceTree = "<group>"; };
+		CA764A491A5A583800ED70A7 /* 16 Miscellaneous.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "16 Miscellaneous.playground"; path = "Playgrounds/16 Miscellaneous.playground"; sourceTree = "<group>"; };
 		CA764A4A1A5A590C00ED70A7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CA764A4B1A5A609800ED70A7 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,9 +54,10 @@
 				CA764A441A5A576F00ED70A7 /* 10 Classes.playground */,
 				CA764A451A5A578800ED70A7 /* 11 ARC.playground */,
 				CA764A461A5A57A700ED70A7 /* 12 Extensions.playground */,
-				CA764A471A5A57DB00ED70A7 /* 13 Generics.playground */,
-				CA764A481A5A57F800ED70A7 /* 14 Operator Overloading.playground */,
-				CA764A491A5A583800ED70A7 /* 15 Miscellaneous.playground */,
+				CA764A471A5A57DB00ED70A7 /* 14 Generics.playground */,
+				CA764A481A5A57F800ED70A7 /* 15 Operator Overloading.playground */,
+				CA764A491A5A583800ED70A7 /* 16 Miscellaneous.playground */,
+				825E1C0E1BE2EC6F007913C7 /* 13 Protocols.playground */,
 			);
 			name = Playgrounds;
 			sourceTree = "<group>";

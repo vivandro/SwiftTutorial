@@ -130,17 +130,17 @@ func join(s1: String, s2: String = "world", joiner: String = " ") -> String {
 var s5 = join("hello", joiner: ", ")
 // var s52 = join("hello", ", ") // ERROR due to ambiguity
 
-func someFoo(a: Int = 29) -> Int {
-    return a * 2
+func someFoo(a: Int = 29, b: Int = 32) -> Int {
+    return a * b * 2
 }
-someFoo(100)
+someFoo(100, b: 10)
 
 // We can discard the automatically generated external parameter name by providing _
 // as its replacement.
-func someFoo(_ a: Int = 29) -> Int {
-    return a * 3
+func someFoo(a: Int = 29, _ b: Int = 32) -> Int {
+    return a * b * 2
 }
-someFoo(200)
+someFoo(200, 20)
 
 
 /*
@@ -477,4 +477,7 @@ step(true)(quanta: 3)(val: 10)
 
 
 var fwd = step(false)
-var fwdBy5 = fwd(
+var fwdBy5 = fwd(quanta: 5)
+fwdBy5(val: 10)
+fwdBy5(val: 20)
+fwd(quanta: 10)(val: 10)
