@@ -43,12 +43,12 @@ var greaterThan = { (x: Int, y: Int) -> Bool in
 
 var names = ["Chris", "Alex", "Ewa", "Barry", "Daniella", ]
 
-func leftToRightOrderingDescending(s1: String, s2: String) -> Bool {
+func leftToRightOrderingDescending(_ s1: String, s2: String) -> Bool {
     return s1 > s2
 }
 
 // Call to sort using a func
-names.sortInPlace(leftToRightOrderingDescending)
+names.sort(by: leftToRightOrderingDescending)
 names
 // If we don't want to modify the source array, we can use the sort function instead.
 // names.sort(backwards) // returns a sorted copy of the names array
@@ -56,7 +56,7 @@ names
 
 // Same result with a closure
 // leftToRightOrderingAscending
-names.sortInPlace({ (s1: String, s2: String) -> Bool in
+names.sort(by: { (s1: String, s2: String) -> Bool in
     return s1 < s2
 })
 names
@@ -66,31 +66,31 @@ names
  * Inferred parameter and return types
  ****/
 
-names.sortInPlace({ s1, s2 in return s1 > s2 })
+names.sort(by: { s1, s2 in return s1 > s2 })
 names
 
 /****
  * Implicit returns
  ****/
-names.sortInPlace({ s1, s2 in s1 < s2 })
+names.sort(by: { s1, s2 in s1 < s2 })
 names
 
 /****
  * Shorthand argument names
  ****/
-names.sortInPlace({ $0 > $1 })
+names.sort(by: { $0 > $1 })
 names
 
 /****
  * Trailing closures
  ****/
-names.sortInPlace { $0 < $1 }
+names.sort { $0 < $1 }
 names
 
 /****
  * Operator functions
  ****/
-names.sortInPlace(<) // The second argument is actually an operator function name
+names.sort(by: <) // The second argument is actually an operator function name
 names
 
 

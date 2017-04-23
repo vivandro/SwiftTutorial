@@ -16,10 +16,6 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-for var index = 0; index < 3; ++index {
-    print("index is \(index)")
-}
-
 // ... closed range
 for index in 1...5 {
     print("\(index) times 5 is \(index * 5)")
@@ -38,7 +34,7 @@ for name in names {
 }
 
 // Getting the array index in the enumeration
-for (index, name) in names.enumerate() {
+for (index, name) in names.enumerated() {
     print("\(index) -> \(name)")
 }
 
@@ -54,7 +50,7 @@ for (animalName, legCount) in numberOfLegs {
 }
 
 // Getting an index in the enumeration
-for (index, (animalName, legCount)) in numberOfLegs.enumerate() {
+for (index, (animalName, legCount)) in numberOfLegs.enumerated() {
     print("\(index) --> \(animalName)s have \(legCount) legs")
 }
 
@@ -124,7 +120,7 @@ case let (x, y):
 
 // Labelled break and continue ... Labels are only allowed at the beginning of loop and switch statements
 let finalSquare = 25
-var board = [Int](count: finalSquare + 1, repeatedValue: 0)
+var board = [Int](repeating: 0, count: finalSquare + 1)
 board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
 board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
 var square = 0

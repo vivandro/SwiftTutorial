@@ -46,7 +46,7 @@ class Something {
     var gettableTwo: Int = 2 // get requirement can be satisfied with a read-write property
     var settableOne: Int = 11
     func saySomething() {}
-    func mutateSomething() {gettableTwo++}
+    func mutateSomething() {gettableTwo += 1}
     static var gettableOneStatic: Int {return 10}
     static func typeMethod() {}
 }
@@ -96,7 +96,7 @@ protocol ClassOnlyThings : class, AllTheThings { }
 // Protocol conformance requirement
 // Single protocol requirement can be specified byt using the protocol name in place
 // of a type
-func processAllTheThings(things: AllTheThings) {}
+func processAllTheThings(_ things: AllTheThings) {}
 
 // Multiple protocol conformance requirement. This is specified using what is called 
 // protocol composition. protocol<Abc, Def>
@@ -106,7 +106,7 @@ func processAllTheThings(things: AllTheThings) {}
 // ERROR: protocol 'Hashable' can only be used as a generic constraint because it has Self or associated type requirements
 //func processAllTheThingsAndHashable(things: protocol<AllTheThings, Hashable>) {} // TODO: why?
 protocol AndMore {}
-func processAllTheThingsAndMore(things: protocol<AllTheThings, AndMore>) {}
+func processAllTheThingsAndMore(_ things: AllTheThings & AndMore) {}
 
 protocol AllHash: AllTheThings, Hashable {}
 // And that still doesn't solve the problem I was facing above.
@@ -125,7 +125,7 @@ Use optional chaining to invoke such methods on instances of conforming classes.
 */
 
 @objc protocol Summable {
-    optional func add(a: Int, b: Int) -> Int
+    @objc optional func add(_ a: Int, b: Int) -> Int
 }
 
 class UseSummable {
@@ -161,7 +161,7 @@ b.add?(1, b: 2)
 //  corresponding to the most specialized constraints.”
 
 extension Summable {
-    func add(a: Int, b: Int) -> Int {
+    func add(_ a: Int, b: Int) -> Int {
         return a + b
     }
 

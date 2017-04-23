@@ -34,67 +34,89 @@ let rect2 = Rectangle(width: 200, height: 200)
 struct Circle {
     var radius = 1  // Unit circle by default
     let shapeName = "Circle"
+    var color = "red"
 }
 
 let cir1 = Circle()                                    // Default initializer
-let cir2 = Circle(radius: 100, shapeName: "BigCircle") // Memberwise initializer
+// Looks like memberwise initiazer only picks up var and not let members.
+//let cir2 = Circle(radius: 100, shapeName: "BigCircle", color: "blue") // Memberwise initializer
+let cir3 = Circle(radius: 100, color: "blue") // Memberwise initializer
 
 /******************************************************************************
  * Enums
  ******************************************************************************/
 enum Directions {
-    case North
-    case South
-    case East
-    case West
+    case north
+    case south
+    case east
+    case west
 }
 
-
-var treasureDirection : Directions = Directions.North
+var treasureDirection = Directions.north
 
 switch treasureDirection {
-case .North:
+case .north:
     print("Arctic circle")
-case .South:
+case .south:
     print("In Antarctica")
-case .East:
+case .east:
     print("Nippon")
-case .West:
+case .west:
     print("New World")
 }
 
 // Enums with associated values.
 enum Address {
-    case Full(String, String, String)
-    case Unknown
+    case full(String, String, String)
+    case unknown
 }
 
-var joeysLocation = Address.Full("12345 Abc St", "Some City", "Some Country")
-joeysLocation = .Unknown
-var him = Address.Unknown
+var joeysLocation = Address.full("12345 Abc St", "Some City", "Some Country")
+joeysLocation = .unknown
+var him = Address.unknown
 
-// if Address.Unknown == him { // ERROR
+//let itsHim =  Address.unknown == him // ERROR : Binary operator cannot be applied to two Address instances.
 // The only way to reach out into the enum and get a hold of the 'associated value'
 // is to use a switch-case. We have a separate playground that goes into further
 // details related to enumerations. We will learn a little bit
 // more about the switch case statement (in the Control Statements playground)
 // before we move on to further details on enumerations with associated values.
+// Watch out for enums with raw values though!
 
 /******************************************************************************
  * Getting the raw values
  ******************************************************************************/
 
 enum DirectionsInt : Int {
-    case North = 3
-    case South
-    case East
-    case West
+    case north = 3
+    case south
+    case east
+    case west
+//    case any(Int, Int) // ERROR: enum with raw type cannot have cases with arguments.
 }
 
-let eastInt = DirectionsInt.East.rawValue
+let eastInt = DirectionsInt.east.rawValue
+// let eastInt2 = Directions.east.rawValue // ERROR : Directions has no member rawValue, obviously.
 
-// let eastInt2 = CompassPoint.East.toRaw() // ERROR
+let east = DirectionsInt.east
+let isEast = east == DirectionsInt.east // This works because now thw raw values can be compared!
 
+switch east {
+case .east:
+    print("\(east)")
+case .west:
+    print("\(east)")
+case .north:
+    print("\(east)")
+case .south:
+    print("\(east)")
+    //default: break    // WARNING: Surprising that even for enums with raw values we get a warning
+                        // if all stated cases are covered. The reason is apparent in the declaration for
+                        // anyDirection below
+}
+
+var anyDirection = DirectionsInt(rawValue: 22)
+// anyDirection is nil because the raw value of 22 doesn't have a valid case in DirectionsInt enum.
 
 /******************************************************************************
  * Classes
@@ -124,7 +146,7 @@ if someVideoMode !== someOtherVideoMode {
     print("Video modes do not refer to the same object")
 }
 
-// if someVideoMode == someOtherVideoMode // ERROR
+// let isSameVideoMode = someVideoMode == someOtherVideoMode // ERROR
 // NOTE: The above statement does not compile because for custom classes, you
 // have to provide some more code to implement what equality means.
 // [Refer to Classes playground and operator overloading playground for details
@@ -234,15 +256,16 @@ class StepCounter {
     var didSetCounter = 0
     var totalSteps: Int = 0 {
         willSet(newTotalSteps) { // If you don't provide a name, default name is newValue
-            ++willSetCounter
+            willSetCounter += 1
             print("About to set totalSteps to \(newTotalSteps)")
         }
         didSet {
-            ++didSetCounter
+            didSetCounter += 1
             if totalSteps > oldValue  {
                 print("Added \(totalSteps - oldValue) steps")
             } else {
-                totalSteps = oldValue // Setting the property value inside property
+                print("Tried reducing steps by \(totalSteps - oldValue) steps, so I will reset them back to oldValue \(oldValue)")
+                totalSteps = oldValue // IMPORTANT: Setting the property value inside property
                 // observers does not trigger the observer again.
             }
         }

@@ -46,7 +46,7 @@ class Counter {
         return [2, 3, 5].count
         }() // Don't forget to invoke the closure. Notice the () in the end
     
-    func incrementBy(amount: Int, numberOfTimes: Int) { // Instance method
+    func incrementBy(_ amount: Int, numberOfTimes: Int) { // Instance method
         self.count += amount * numberOfTimes
     }
     class func gimmeAString() -> String { // Type/Class method
@@ -195,7 +195,7 @@ class Celsius {
         temperatureInCelsius = Double(fahrenheitInteger - 32) / 1.8
     }
     
-    func tempModifier(fahrenheit: Double) {
+    func tempModifier(_ fahrenheit: Double) {
         // temperatureInCelsius = (fahrenheit - 32.0) / 1.8 // ERROR
     }
     deinit { // deinit is only available for classes.
@@ -339,7 +339,7 @@ class CDerived: ABase {
 let aCollection = [BDerived(), ABase(), BDerived(), CDerived(), BDerived()]
 
 // Type checking vis the is operator
-func printCollectionTypes(aCollection: [ABase]) -> [String] {
+func printCollectionTypes(_ aCollection: [ABase]) -> [String] {
     var result = [String]()
     
     for item in aCollection {
@@ -359,7 +359,7 @@ func printCollectionTypes(aCollection: [ABase]) -> [String] {
 printCollectionTypes(aCollection)
 
 // Type checking via the optional downcasting operator as?
-func printCollectionTypes2(aCollection: [ABase]) -> [String] {
+func printCollectionTypes2(_ aCollection: [ABase]) -> [String] {
     var result = [String]()
     
     for item in aCollection {
@@ -379,7 +379,7 @@ func printCollectionTypes2(aCollection: [ABase]) -> [String] {
 printCollectionTypes2(aCollection)
 
 // Simplified type matching via switch-case and the forced cast operator 'as'
-func printCollectionTypes3(aCollection: [ABase]) -> [String] {
+func printCollectionTypes3(_ aCollection: [ABase]) -> [String] {
     var result = [String]()
     
     for item in aCollection {
@@ -419,7 +419,7 @@ things.append(3.14)
 things.append("Hello")
 things.append(ABase())
 
-func printThings(aCollection: [Any]) -> [String] {
+func printThings(_ aCollection: [Any]) -> [String] {
     var result = [String]()
     
     for item in aCollection {
@@ -449,4 +449,24 @@ func printThings(aCollection: [Any]) -> [String] {
 }
 
 printThings(things)
+
+import Foundation
+class GPValidNowFilter : NSObject {
+    @objc(isValidNowFilter:) class func isValidNowFilter(object:Any?) -> Bool {
+        return object as? GPValidNowFilter != nil
+    }
+
+//    @objc(isValidNowFilter:) class func isValidNowFilter(object:Any?) -> Bool {
+//        guard let object = object else { return false }
+//        return type(of:object) == self
+//    }
+
+}
+
+let blahBlah = GPValidNowFilter()
+
+GPValidNowFilter.isValidNowFilter(object: blahBlah)
+GPValidNowFilter.isValidNowFilter(object: nil)
+
+
 

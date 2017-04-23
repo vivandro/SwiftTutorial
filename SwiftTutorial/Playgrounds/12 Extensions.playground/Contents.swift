@@ -34,13 +34,14 @@ var str = "Hello, playground"
 // Short example
 
 extension Int {
-    func rep(task: () -> ()) {
+    func rep(_ task: () -> ()) {
         for _ in 0..<self {
             task()
         }
     }
     
-    subscript(var i: Int) -> Int {
+    subscript(i: Int) -> Int {
+        var i = i
         var copySelf = (self >= 0) ? self : -self
         var digit = 0
         // i = 0 implies the caller wants digit in the ten's place

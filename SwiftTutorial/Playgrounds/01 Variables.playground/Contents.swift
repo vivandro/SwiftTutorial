@@ -36,7 +36,8 @@ var j = 45 // j is of type Int
 
 // Variables, constants need to be assigned values before they can be used
 var w: Int
-// w++ // ERROR
+// w += 1 // ERROR: Variable 'w' passed by reference before being initialized
+// Can you guess why the compiler thinks 'w' is being "passed" by reference?
 
 /*
 .
@@ -69,13 +70,13 @@ var w: Int
 var valI: Int = 100
 var valJ = valI
 
-valI
-valJ
+valI // 100
+valJ // 100
 
 valJ = 50
 
-valI
-valJ
+valI // 100
+valJ // 50
 
 // Reference types in action
 class IntHolder {
@@ -85,13 +86,13 @@ class IntHolder {
 var refI: IntHolder = IntHolder()
 var refJ = refI
 
-refI
-refJ
+refI.valI // 20
+refJ.valI // 20
 
 refJ.valI = 10
 
-refI
-refJ
+refI.valI // 10
+refJ.valI // 10
 
 /*
 .
@@ -140,11 +141,10 @@ let 你好 = "你好世界"
 let 🐶🐮 = "dogcow"
 
 
-// Just FYI, this is a reasonable way to declare multiple variables of the same type in a single statement without specifying independent type annotations.
+// Just FYI, this is a reasonable way to declare multiple variables of the same type in a single statement
+// without specifying independent type annotations.
 var a1, b1, c1 : String
 // var a2, b2, c2 = 29 // ERROR: because type inference only works for the variables to which the value is assigned.
-
-// Before a variable can be used
 
 // BAD, but legal, style. Declaring variables of different types in a single statement.
 var v1 = 26,      v2 = "hello"
@@ -153,11 +153,11 @@ let v3: Int = 52, v4: String = "hola"
 // Moving forward, I am going to avoid discussions around syntax that is legal but best avoided.
 // One such example is :
 var `var` = "Why would I even insist on such a name!"
-/* This /* is another */ such example */
+/* This /* is another */ such example. Nested multiline comments are legal. */
 // I promise, we will have no such digressions in the future.
 
 /*********************************
- * Printing variables via println
+ * Printing variables via print
  *********************************/
 // String Interpolation is the technique used to convert variables into their String descriptions.
 // Here's the syntax for this:
@@ -165,4 +165,6 @@ print("x = \(x)")
 
 var yStr = "y is \(y)"
 print(yStr)
+// print() also accepts variable number of printable objects, custom separator and custom end-of-string string.
+print("x = \(x)", yStr, separator: " --:-- ", terminator: ". THE END.\n")
 

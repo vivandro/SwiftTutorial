@@ -36,7 +36,7 @@
 struct Stuff {
     var mutatingCalls = 0
     mutating func mutate() {// mutating is a necessary qualifier since this
-        mutatingCalls++     // method modifies a property.
+        mutatingCalls += 1     // method modifies a property.
     }
     func printMutations() { // Mo need to use mutating.
         print("\(mutatingCalls)")

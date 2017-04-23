@@ -23,7 +23,7 @@
  * - All the basic types like Int, UInt, Float. Double, Boolean, Character, String
  * - Struct, Enum
  * - IMPORTANT : All the basic types are actually defined as structures in Swift in order 
- *   to provide value semantics in their operations: Int, Uint, Double, Float, String
+ *   to provide value semantics in their operations: Int, UInt, Double, Float, String
  *
  * Reference Types:
  * - Classes, Functions, Closures
@@ -31,7 +31,9 @@
  */
 
 // Integers
-Int.min // Int is the preferred type since type inference results in Int when you initialize a variable to a number without specifying a type annotation. Using default as much as possible will pre-empt the need to perform type conversions.
+Int.min // Int is the preferred type since type inference results in Int when you initialize a variable
+        // to a number without specifying a type annotation. Using default as much as possible will pre-empt
+        // the need to perform type conversions.
 Int.max
 Int8.max
 Int16.max
@@ -48,7 +50,7 @@ UInt64.min
 // Default type inference
 var i = 1_600_000
 var i16:Int16 = 0x0F
-// i16 = i // ERROR
+// i16 = i // ERROR: Cannot assign value of type Int to type Int16
 // i = i16 // ERROR - Swift provides a high degree of type safety.
 
 // Decimals
@@ -64,8 +66,8 @@ var f:Float = 1.25e3
 // Booleans
 let niceDayToLearnSwift: Bool = true
 
-// Range
-let range = 0...3
+// CountableClosedRange: Range
+let range = 0...3 // Fun to explore this more later...or check the documentation right away.
 
 
 // Strings
@@ -76,25 +78,37 @@ var ch: Character = "n"
 name += "ny" // String + String
 
 // Appending a Character
-//name += ch // String + Character // This used to work, but at some point the language spec change to the more non-intuitive version
+//name += ch // String + Character // This used to work, but at some point the language spec changed to the more non-intuitive version
 name.append(ch) // String + Character
 name  += "\u{301}" // String + Character Literal
 
 // Indexing characters in a string.
-let alphabet = "abc...z"
+let alphabet = "abcdefg"
 
 alphabet[alphabet.startIndex]
-alphabet[alphabet.startIndex.successor()]
+alphabet[alphabet.characters.index(after: alphabet.startIndex)]
 //alphabet[alphabet.endIndex] // runtime ERROR
-alphabet[alphabet.endIndex.predecessor()]
-alphabet[alphabet.startIndex.advancedBy(alphabet.characters.count-1)]
+alphabet[alphabet.characters.index(before: alphabet.endIndex)]
+alphabet[alphabet.characters.index(alphabet.startIndex, offsetBy: alphabet.characters.count-1)]
+
+let aIndex = alphabet.startIndex
+// alphabet[aIndex+1]// ERROR: Binary operator '+' cannot be applied to operands of type 'String.index' and 'Int'
+alphabet[alphabet.characters.index(after: aIndex)]
+
+//alphabet[0] // ERROR: 'subscript' is unavailable: canot subscript String with an Int
+// This is very annoying when dealing with strings.
+// But, here's a workaround that makes life easy, while still providing the level of
+// type safety that Swift promotes.
+let stringArray = Array(alphabet.characters)
+stringArray[0]
+
 
 // Inserting and removing
-name.removeAtIndex(name.endIndex.predecessor())
-name.insert("!", atIndex: name.endIndex)
-name.insertContentsOf(" Gaddar".characters, at: name.endIndex.predecessor())
-let charRange = name.startIndex...name.startIndex.advancedBy(3)
-name.removeRange(charRange)
+name.remove(at: name.characters.index(before: name.endIndex))
+name.insert("!", at: name.endIndex)
+name.insert(contentsOf: " Gaddar".characters, at: name.characters.index(before: name.endIndex))
+let charRange = name.startIndex...name.characters.index(name.startIndex, offsetBy: 3)
+name.removeSubrange(charRange)
 
 let intRange = 0...3
 //name.removeRange(intRange) // ERROR: Int range is not equivalent to Index range
@@ -105,12 +119,12 @@ let greeting = "Hello \(name)"
 
 // Helpers
 import Foundation // required to get the ability to use NSString methods on String
-name.uppercaseString
-"What Is This".lowercaseString
-("Running".lowercaseString).hasSuffix("ing")
+name.uppercased()
+"What Is This".lowercased()
+("Running".lowercased()).hasSuffix("ing")
 
 // '.' operators Left associativity allows us to get rid of the paranthesis
-"Running".uppercaseString.hasPrefix("RUN")
+"Running".uppercased().hasPrefix("RUN")
 
 // Tuples
 var tup: (Int, Float) = (10, 67.0)
@@ -268,7 +282,7 @@ arrStrings += ["foo", "bar"]
 
 
 // Insertion
-arrStrings.insert("ocean", atIndex: 3)
+arrStrings.insert("ocean", at: 3)
 arrStrings
 
 // Replacement
@@ -278,7 +292,7 @@ arrStrings[3...5] = ["nada"]
 arrStrings
 
 // Deletion
-let rm1 = arrStrings.removeAtIndex(4) // returns the removed entry
+let rm1 = arrStrings.remove(at: 4) // returns the removed entry
 arrStrings
 
 let rm2 = arrStrings.removeLast()     // returns the removed entry

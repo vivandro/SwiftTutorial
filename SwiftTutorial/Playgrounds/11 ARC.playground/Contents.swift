@@ -53,11 +53,11 @@ class Person {
     let name: String
     init(_ name: String) {
         self.name = name
-        ++personCount
+        personCount += 1
     }
     var apartment: Apartment?
     deinit {
-        --personCount
+        personCount -= 1
     }
 }
 
@@ -65,11 +65,11 @@ class Apartment {
     let number: Int
     init(_ number: Int) {
         self.number = number
-        ++apartmentCount
+        apartmentCount += 1
     }
     weak var tenant: Person?    // weak can be nil, hence need to be optionals
     deinit {
-        --apartmentCount
+        apartmentCount -= 1
     }
 }
 

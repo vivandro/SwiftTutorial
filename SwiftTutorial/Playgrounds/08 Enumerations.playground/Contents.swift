@@ -26,26 +26,26 @@
  ******************************************************************************/
 
 enum DiverseVals {
-    case OneStr(String)
-    case TwoStrs(String, String)
-    case OneInt(Int)
+    case oneStr(String)
+    case twoStrs(String, String)
+    case oneInt(Int)
 }
 
-let os = DiverseVals.OneStr("Hola")
-let ts = DiverseVals.TwoStrs("Hola", "Amigo")
-let oi = DiverseVals.OneInt(1)
+let os = DiverseVals.oneStr("Hola")
+let ts = DiverseVals.twoStrs("Hola", "Amigo")
+let oi = DiverseVals.oneInt(1)
 
 switch os {
-case .OneStr: // 'case' for C-style case
+case .oneStr: // 'case' for C-style case
     print("OneStr")
 default:
     print("default")
 }
 
 switch ts {
-case let .TwoStrs(a, b):// 'case let' for extracting the 'associated value' from the enum variable
+case let .twoStrs(a, b):// 'case let' for extracting the 'associated value' from the enum variable
     print("\(a) \(b)")
-case .OneStr(let a):    // The let can be moved inside the parenthesis
+case .oneStr(let a):    // The let can be moved inside the parenthesis
     print("\(a)")
 default:
     print("default")
@@ -57,19 +57,19 @@ default:
  ******************************************************************************/
 
 enum DefVals : Int {
-    case One = 1
-    case Two, Three, Four   // Like C, these will get values 2, 3, 4.
+    case one = 1
+    case two, three, four   // Like C, these will get values 2, 3, 4.
     // case Uno = 1 // ERROR. Unlike in C, Swift forces all cases to have
     // unique raw values
-    case Seven = 7, Eight, Nine
-    case Five = 5
+    case seven = 7, eight, nine
+    case five = 5
 }
 
 // Extracting the default/raw value
-let val1: Int = DefVals.One.rawValue
+let val1: Int = DefVals.one.rawValue
 
 // Creating a variable from enumerations
-let one = DefVals.One
+let one = DefVals.one
 
 // Creating a variable from raw values
 let six = DefVals(rawValue: 6)  // This is possible because raw value enums
@@ -92,16 +92,16 @@ enum TrafficLight {
     // This leads to an interesting solution that
     // requires us to use associated values.
     
-    case Red, Yellow(switchingFromRed: Bool), Green
+    case red, yellow(switchingFromRed: Bool), green
     
     mutating func next() {
         switch self {
-        case .Green:
-            self = Yellow(switchingFromRed: false)
-        case .Yellow(let switchedFromRed):
-            self = (switchedFromRed == true ? Green : Red)
-        case .Red:
-            self = Yellow(switchingFromRed: true)
+        case .green:
+            self = .yellow(switchingFromRed: false)
+        case .yellow(let switchedFromRed):
+            self = (switchedFromRed == true ? .green : .red)
+        case .red:
+            self = .yellow(switchingFromRed: true)
         }
     }
 }

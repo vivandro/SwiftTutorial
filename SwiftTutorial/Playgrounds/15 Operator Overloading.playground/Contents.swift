@@ -42,8 +42,8 @@ var c = a + b + a + b
 /******************************************************************************
  * prefix operators
  ******************************************************************************/
-prefix func ++ (inout a: Accumulator) -> Accumulator {
-    ++a.sum
+prefix func ++ (a: inout Accumulator) -> Accumulator {
+    a.sum += 1
     return a
 }
 let d = ++c
@@ -53,9 +53,9 @@ c
 /******************************************************************************
  * postfix operators
  ******************************************************************************/
-postfix func ++ (inout a: Accumulator) -> Accumulator {
+postfix func ++ (a: inout Accumulator) -> Accumulator {
     let res = Accumulator(a.sum)
-    ++a.sum
+    a.sum += 1
     return res
 }
 var e = c++ // Notice that res is let while e is var. Those qualifiers apply on to
@@ -75,7 +75,8 @@ e = a
  ******************************************************************************/
 extension Int {
     
-    subscript(var i: Int) -> Int { // Read-only subscript
+    subscript(i: Int) -> Int { // Read-only subscript
+        var i = i
         var copySelf = (self >= 0) ? self : -self
         var digit = 0
         // i = 0 implies the caller wants digit in the ten's place
@@ -90,7 +91,7 @@ extension Int {
         for i in from..<to {
             result += String(self[i])
         }
-        Array(result.characters.reverse())
+        Array(result.characters.reversed())
         return result
     }
     /*
@@ -162,7 +163,7 @@ f --+ g --+ g + g
 /******************************************************************************
  * prefix operator
  ******************************************************************************/
-prefix operator √ {} // {} needs to be emptry for prefix and postfix operators
+prefix operator √ // {} needs to be emptry for prefix and postfix operators
 
 prefix func √ (a: Accumulator) -> Accumulator {
     let sqrtOfSum = Int(sqrt(Double(a.sum)))

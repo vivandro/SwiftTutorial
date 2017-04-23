@@ -80,13 +80,13 @@ let iForAssert = -1
 
 // 6. Exceptions
 
-struct MyErrorTwo: ErrorType {
+struct MyErrorTwo: Error {
     var code = 0
 }
 
-func mayThrow(shouldThrow: Bool) throws {
+func mayThrow(_ shouldThrow: Bool) throws {
     if shouldThrow {
-        struct MyError: ErrorType {
+        struct MyError: Error {
             var code = 0
         }
         throw MyError(code: 420)
@@ -117,12 +117,12 @@ for letter in alphabet.characters {
 }
 
 alphabet[alphabet.startIndex]
-alphabet[alphabet.startIndex.successor()]
+alphabet[alphabet.characters.index(after: alphabet.startIndex)]
 //alphabet[alphabet.endIndex] // runtime ERROR
-alphabet[alphabet.endIndex.predecessor()]
-alphabet[alphabet.startIndex.advancedBy(alphabet.characters.count-1)]
+alphabet[alphabet.characters.index(before: alphabet.endIndex)]
+alphabet[alphabet.characters.index(alphabet.startIndex, offsetBy: alphabet.characters.count-1)]
 
-func printIndices(s: String) -> String {
+func printIndices(_ s: String) -> String {
     var rv = ""
     for index in s.characters.indices {
         print("index: \(index)", separator: " ", terminator: " ")

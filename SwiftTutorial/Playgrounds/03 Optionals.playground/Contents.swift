@@ -154,7 +154,7 @@ iOpt = 10
 
 
 /*********************************************
- * Optional Chaining
+ * Optional Binding (A related term - optional chaining is when we use a?.b?.c() )
  **********************************************
  *
  * This works out as an alternative to forced unwrapping. It is especially
@@ -176,16 +176,16 @@ numString
 import Foundation // required for us to be able to use lowercaseString
 
 // lower10 is deduced to be String?
-var lower10 = numString[10]?.lowercaseString
+var lower10 = numString[10]?.lowercased()
 lower10
 
-var missing100 = numString[100]?.lowercaseString
+var missing100 = numString[100]?.lowercased()
 missing100
 missing100 = "Hello"
 
 // If we are sure that the value exists, then we can force it out and the value,
 // if successfully extracted, will have type String
-var forcedLower10 = numString[10]!.lowercaseString
+var forcedLower10 = numString[10]!.lowercased()
 forcedLower10
 
 
@@ -200,17 +200,17 @@ optNumString?[10] = "Ten"
 optNumString
 
 
-let lower10InOptDictionary = optNumString?[10]?.lowercaseString
+let lower10InOptDictionary = optNumString?[10]?.lowercased()
 lower10InOptDictionary // Deduced as String?
 
-let lower10InForcedOptDictionary = optNumString![10]?.lowercaseString
+let lower10InForcedOptDictionary = optNumString![10]?.lowercased()
 lower10InForcedOptDictionary // Still deduced as String? because we only forced
 // forced out the dictionary but not the value for the key.
 
-let forcedLower10InForcedOptDictionary = optNumString![10]!.lowercaseString
+let forcedLower10InForcedOptDictionary = optNumString![10]!.lowercased()
 forcedLower10InForcedOptDictionary // Deduced as String
 
-let forcedLower10InOptDictionary = optNumString?[10]!.lowercaseString
+let forcedLower10InOptDictionary = optNumString?[10]!.lowercased()
 forcedLower10InOptDictionary // Still deduced as String? because the chained
 // unwrapping can fail at any point in the chain. The expression
 // then should result in a nil on any failure. That gives us the ?
@@ -218,10 +218,10 @@ forcedLower10InOptDictionary // Still deduced as String? because the chained
 // part.
 
 // Optional chaining in the lvalue expression
-optNumString?[10] = optNumString?[10]?.lowercaseString
+optNumString?[10] = optNumString?[10]?.lowercased()
 optNumString
 
-optNumString?[100] = optNumString?[100]?.lowercaseString
+optNumString?[100] = optNumString?[100]?.lowercased()
 optNumString
 
 // How do you find out if an optional chained expression resulted in a no-op?
@@ -247,7 +247,7 @@ if (optNumString?[200] = "Two Hundred") != nil { // Success
 // Interesting part to notice here is that the optional chain fails
 // at optNumString?[100]? point. So it does not bother to invoke
 // lowercaseString at all.
-if optNumString?[100]?.lowercaseString != nil { // Success
+if optNumString?[100]?.lowercased() != nil { // Success
     print("Found it!")
 } else { // Failure
     print("Missed it.")
@@ -271,38 +271,30 @@ Come back to the last part only after finishing the Enumerations playground.
 switch optNumString?[100] {
 case nil:
     print("No value to call lowercaseString on")
-case .Some(let someStr):
+case .some(let someStr):
     print("found \(someStr)")
-default:
-    break
 }
 
 
 switch optNumString?[200] {
 case nil:
     break
-case .Some(let someStr):
-    print("found [\(someStr)]. result should be [\(someStr.lowercaseString)]")
-default:
-    break
+case .some(let someStr):
+    print("found [\(someStr)]. result should be [\(someStr.lowercased())]")
 }
 
 // Literal translation of optNumString?[N]?.lowercaseString
-func getThatString(N: Int) -> String? {
+func getThatString(_ N: Int) -> String? {
     switch optNumString {
     case nil:
         return nil
-    case .Some(let dictionary):
+    case .some(let dictionary):
         switch dictionary[N] {
         case nil:
             return nil
-        case .Some(let val):
-            return val.lowercaseString
-        default:
-            return nil
+        case .some(let val):
+            return val.lowercased()
         }
-    default:
-        return nil
     }
 }
 

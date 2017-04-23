@@ -22,7 +22,7 @@
  *************************************************************************/
 
 // A simple function with two arguments and returns a value
-func maxOfTwo(a: Int, b: Int) -> Int {
+func maxOfTwo(_ a: Int, b: Int) -> Int {
     return a > b ? a : b
 }
 print(maxOfTwo(-11, b: 10))
@@ -124,20 +124,20 @@ var s4 = join(string: "hello", withJoiner: ", ") // dropped 2nd argument out of 
  *    values
  *************************************************************************/
 
-func join(s1: String, s2: String = "world", joiner: String = " ") -> String {
+func join(_ s1: String, s2: String = "world", joiner: String = " ") -> String {
     return s1 + joiner + s2 + " 2nd overload"
 }
 var s5 = join("hello", joiner: ", ")
 // var s52 = join("hello", ", ") // ERROR due to ambiguity
 
-func someFoo(a: Int = 29, b: Int = 32) -> Int {
+func someFoo(_ a: Int = 29, b: Int = 32) -> Int {
     return a * b * 2
 }
 someFoo(100, b: 10)
 
 // We can discard the automatically generated external parameter name by providing _
 // as its replacement.
-func someFoo(a: Int = 29, _ b: Int = 32) -> Int {
+func someFoo(_ a: Int = 29, _ b: Int = 32) -> Int {
     return a * b * 2
 }
 someFoo(200, 20)
@@ -171,7 +171,7 @@ someFoo(200, 20)
  *************************************************************************/
 
 // A func that forces unnamed parameters
-func containsCharacter(string: String, characterToFind: Character) -> Bool {
+func containsCharacter(_ string: String, characterToFind: Character) -> Bool {
     for character in string.characters {
         if character == characterToFind {
             return true
@@ -184,7 +184,7 @@ containsCharacter("Hello", characterToFind: "H")
 //containsCharacter(string: "Hello", characterToFind: "H") // ERROR because the parameters were not intended to be named
 
 // A func that forces named parameters
-func containsCharacter(string string: String, characterToFind: Character) -> Bool {
+func containsCharacter(string: String, characterToFind: Character) -> Bool {
     for character in string.characters {
         if character == characterToFind {
             return true
@@ -228,7 +228,7 @@ containsCharacter(string: "Hello", characterToFind: "H")
  * as an array [Type]
  *************************************************************************/
 
-func arithmeticMean(numbers: Double...) -> Double {
+func arithmeticMean(_ numbers: Double...) -> Double {
     var total: Double = 0
     for number in numbers {
         total += number
@@ -269,7 +269,7 @@ var primes = [3.0, 5, 7, 11, 13, 17, 19]
  *     Required only for value type arguments
  *************************************************************************/
 
-func swapTwoInts(inout a: Int, inout b: Int) {
+func swapTwoInts(_ a: inout Int, b: inout Int) {
     let temporaryA = a
     a = b
     b = temporaryA
@@ -284,7 +284,7 @@ anotherInt
 class IntContainer {
     var containedInt = 100
 }
-func swapTwoInts(inout a: IntContainer, inout b: IntContainer) {
+func swapTwoInts(_ a: inout IntContainer, b: inout IntContainer) {
     let temporaryA = a.containedInt
     a.containedInt = b.containedInt
     b.containedInt = temporaryA
@@ -299,7 +299,7 @@ swapTwoInts(&oneContainedInt, b: &anotherContainedInt)
 oneContainedInt
 anotherContainedInt
 
-func swapTwoInts(a: IntContainer, b: IntContainer) {
+func swapTwoInts(_ a: IntContainer, b: IntContainer) {
     let temporaryA = a.containedInt
     a.containedInt = b.containedInt
     b.containedInt = temporaryA
@@ -343,14 +343,14 @@ anotherContainedInt
  *************************************************************************/
 
 // Notice the lack of * that arguments of function point types take.
-func mathResult(mathFunction: (Int, Int) -> Int, a: Int, b: Int) -> Int {
+func mathResult(_ mathFunction: (Int, Int) -> Int, a: Int, b: Int) -> Int {
     return mathFunction(a, b)
 }
 
-func addTwoInts(a: Int, b: Int) -> Int {
+func addTwoInts(_ a: Int, b: Int) -> Int {
     return a + b
 }
-func multiplyTwoInts(inout a: Int, b: Int) -> Int {
+func multiplyTwoInts(_ a: inout Int, b: Int) -> Int {
     return a * b
 }
 func exorTwoInts(oneInt a: Int, b: Int) -> Int {
@@ -394,9 +394,9 @@ mathResult(exorTwoInts, a: 1, b: 2)  // External parameter names don't seem to b
  * Storing context
  *************************************************************************/
 
-func chooseStepFunction(backwards: Bool) -> (Int) -> Int {
-    func stepForward(input: Int) -> Int { return input + 1 }
-    func stepBackward(input: Int) -> Int { return input - 1 }
+func chooseStepFunction(_ backwards: Bool) -> (Int) -> Int {
+    func stepForward(_ input: Int) -> Int { return input + 1 }
+    func stepBackward(_ input: Int) -> Int { return input - 1 }
     return backwards ? stepBackward : stepForward
 }
 var currentValue = -4
@@ -411,12 +411,12 @@ currentValue
 chooseStepFunction(true)(2)
 chooseStepFunction(false)(2)
 
-func chooseStepFunction(backwards backwards: Bool, step: Int) -> (Int) -> Int {
+func chooseStepFunction(backwards: Bool, step: Int) -> (Int) -> Int {
     // Notice that :
     // 1. External paramter names have no meaning when internal functions are returned.
     // 2. The value of the step parameter is captured within the internal functions.
-    func stepForward(input input: Int) -> Int { return input + step }
-    func stepBackward(input input: Int) -> Int { return input - step }
+    func stepForward(input: Int) -> Int { return input + step }
+    func stepBackward(input: Int) -> Int { return input - step }
     return backwards ? stepBackward : stepForward
 }
 
@@ -464,7 +464,7 @@ chooseStepFunction(backwards: false, step: 5)(10)
  * functions, while still allowing the caller to break the function apart into
  * meaningful chunks.
  *************************************************************************/
-func step(backward: Bool)(quanta: Int)(val: Int) -> Int {
+func step(_ backward: Bool, _ quanta: Int, _ val: Int) -> Int {
     return val + (backward ? -quanta : quanta)
 }
 
@@ -473,11 +473,11 @@ func step(backward: Bool)(quanta: Int)(val: Int) -> Int {
 // compiler converting curried functions into anonymous classes. For class methods, parameter names
 // are optional for the first parameter, but compulsory for the rest of them(unless explicitly
 // suppressed by the method using _
-step(true)(quanta: 3)(val: 10)
+step(true)(3)(val: 10)
 
 
 var fwd = step(false)
-var fwdBy5 = fwd(quanta: 5)
+var fwdBy5 = fwd(5)
 fwdBy5(val: 10)
 fwdBy5(val: 20)
-fwd(quanta: 10)(val: 10)
+fwd(10)(val: 10)
