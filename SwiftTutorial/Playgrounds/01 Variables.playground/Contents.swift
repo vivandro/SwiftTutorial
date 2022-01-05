@@ -22,17 +22,21 @@
 
 // Variable definition
 var i: Int = 24
-i = 50 // Obviously, OK
+i = 50 // OK.
 
 
 // Constant definition
 let k: Int = 42
-// k = 45 // Obviously, ERROR
+// k = 45 // ERROR.
 
 
-// Type inference <--- is a really big theme in most Swift features
-var j = 45 // j is of type Int
-
+// Type inference is a really big theme in most Swift features.
+var j = 45 // j is inferred by the compiler to be of type `Int` because 45 is inferred to be of type `Int`.
+var j2: Int8 = 45 // 45 is inferred by the compiler to be of type `Int8` because the developer has specified the
+    // type of j2 as `Int8`.
+// But so is type safety. So automatic type conversion is not done even though it might
+// be obvious to the compiler as to the correct type conversion that should be performed.
+// let jj: Int = Int16(2) // ERROR.  cannot convert value of type `Int16` to specified type `Int`.
 
 // Variables, constants need to be assigned values before they can be used
 var w: Int

@@ -8,8 +8,9 @@
 
 /* Begin PBXFileReference section */
 		825E1C0E1BE2EC6F007913C7 /* 13 Protocols.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "13 Protocols.playground"; path = "Playgrounds/13 Protocols.playground"; sourceTree = "<group>"; };
+		BCCE7ADE2786507C0002A9C8 /* 14 Dispatch.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "14 Dispatch.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CA3C6CE11A50F17200B3F210 /* 00 Hello World.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "00 Hello World.playground"; path = "Playgrounds/00 Hello World.playground"; sourceTree = "<group>"; };
-		CA764A3B1A5A561000ED70A7 /* 01 Variables.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "01 Variables.playground"; path = "Playgrounds/01 Variables.playground"; sourceTree = "<group>"; };
+		CA764A3B1A5A561000ED70A7 /* 01 Variables.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "01 Variables.playground"; path = "Playgrounds/01 Variables.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CA764A3C1A5A564300ED70A7 /* 02 Types.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "02 Types.playground"; path = "Playgrounds/02 Types.playground"; sourceTree = "<group>"; };
 		CA764A3D1A5A568700ED70A7 /* 03 Optionals.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "03 Optionals.playground"; path = "Playgrounds/03 Optionals.playground"; sourceTree = "<group>"; };
 		CA764A3E1A5A56AB00ED70A7 /* 04 Compound Types.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "04 Compound Types.playground"; path = "Playgrounds/04 Compound Types.playground"; sourceTree = "<group>"; };
@@ -58,6 +59,7 @@
 				CA764A481A5A57F800ED70A7 /* 15 Operator Overloading.playground */,
 				CA764A491A5A583800ED70A7 /* 16 Miscellaneous.playground */,
 				825E1C0E1BE2EC6F007913C7 /* 13 Protocols.playground */,
+				BCCE7ADE2786507C0002A9C8 /* 14 Dispatch.playground */,
 			);
 			name = Playgrounds;
 			sourceTree = "<group>";
@@ -75,6 +77,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = CA3C6CD91A50EEDE00B3F210;
