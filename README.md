@@ -1,6 +1,26 @@
 SwiftTutorial
 =============
 
-I have used playgrounds to write all the demo code. The Xcode beta's that I was using during the training sessions seemed to lack stability and performance optimizations (as can be expected from any beta software). The impact was that once I had added my 6th playground, xcode kept crashing. This forced me to split my code samples between multiple projects and that prevented me from uploading this project earlier as a single project. Xcode 6.1.1 is pretty stable now, and not just because I have upgraded to a quad core 16GB MacBook Pro. I notice that it does not try to run all the playgrounds simultaneously. This might be why It doesn't seem to crash even after I a few more playgrounds into a single project. So my plan is to put all the code samples together into a single project to make it easier for the students. But, in case this project crashes Xcode for you, let me know and I will create a branch in which I will split the project into two.  
+This is my Swift Programming Language Reference. It started out originally in Jul-2014 when I taught 
+a Swift Programming Language class at Amazon. And I've been updatng it ever since to stay current
+with the latest developments in the Swift programming language.
 
+Structure
+---------
+I've created unit tests that exercise various aspects of Swift. They are not meant to be testing the 
+compiler though. They just act as code snippets that show how to use various aspects of the Swift
+language. Why not use Playgrounds? Because the Swift Repl doesn't always behave in the same manner as  
+the Swift compiler. There is no point wasting time finding wrokarounds for Repl bugs when I could
+simply code the right thing in the unit tests. 
 
+The unit test classes have a numerical suffix like 007 to indicate their "chapter number". Start from 
+000 and keep going incrementally to the highest numbered chapter. Care has been taken to ensure that
+all the pre-requisites for chapter N are covered in chapters 0 to N-1. So I'd recommend going through 
+these in order if this is your first time learning Swift. 
+
+The non-suffix portion of the test classes is a description of roughly the language concept being
+studied in that test class.
+
+Within each test class, attempt has been made to order the tests in terms of complexity or pre-requsites.
+
+Hope you enjoy the tutorials and feel free to send me pull requests in case you want to recommend any changes.   
